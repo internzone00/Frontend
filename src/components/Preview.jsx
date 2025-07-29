@@ -13,7 +13,7 @@ const Preview = ({ formData, onBack, serviceDuration }) => {
         console.log('Payment status', formData);
 
         try {
-            const response = await axios.post('http://localhost:3000/initiate-payment', {
+            const response = await axios.post('https://internzone-backend.onrender.com/initiate-payment', {
                 ...formData,
                 serviceDuration,
                 txnid: `TXIDS${Date.now()}`,
