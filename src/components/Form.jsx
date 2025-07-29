@@ -108,7 +108,7 @@ const Form = () => {
                                         onChange={handleChange}
                                         className="w-full px-4 py-3 rounded-lg border border-gray-600 bg-gray-700 text-white focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all placeholder-gray-400"
                                         required
-                                        pattern="^[a-zA-Z]{2,30}$"
+                                        pattern="^[a-zA-Z]{2,30}(?: [a-zA-Z]{2,30})*$"
                                         title="Letters only, 2 to 30 characters"
                                     />
                                 </div>
