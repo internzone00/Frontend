@@ -21,7 +21,7 @@ const Hero = () => {
     return (
         <section className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 px-6 py-12 md:py-20 items-center">
             <div className="space-y-6">
-                <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight text-gray-900 dark:text-white">
+                <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight text-white dark:text-white">
                     Turn Your Skills Into <span className="text-cyan-400">Experience</span> with InternZone!
                 </h1>
                 <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
