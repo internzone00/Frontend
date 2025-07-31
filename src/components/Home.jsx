@@ -314,7 +314,7 @@ export default function Home() {
     {
         title: "C++ Development",
         duration: "6-month",
-        price: 449,
+        price: 1,
         cutPrice: "5,499",
         desc: (
             <> Master systems programming, game development and performance optimization with C++.</>
