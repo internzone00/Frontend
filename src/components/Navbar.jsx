@@ -1,12 +1,10 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
-import { FaLinkedin, FaInstagram, FaTwitter } from 'react-icons/fa'
-import { FaGithub } from 'react-icons/fa'
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { SignedIn, SignInButton, UserButton, SignedOut } from "@clerk/clerk-react";
 import { useNavigate } from 'react-router-dom';
 
-const Footer = () => {
-
-    const navigate = useNavigate();
+const Navbar = () => {
+  const navigate = useNavigate();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const handleInternalLink = (section) => {
@@ -21,58 +19,152 @@ const Footer = () => {
     }
   };
 
-    return (
-        <footer className="bg-gradient-to-t from-black to-gray-900 text-center pt-10 pb-6 mt-16 border-t border-gray-700">
-            <div className="max-w-6xl mx-auto px-4">
-                {/* Logo and Tagline */}
-                <div className="mb-6">
-                    <h2 className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">InternZone</h2>
-                    <p className="text-sm text-gray-300 mt-2">Turn Your Skills Into Experience with InternZone!</p>
-                </div>
+  return (
+    <nav className="bg-gray-900 border-b border-gray-800 sticky top-0 z-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between h-16 items-center">
+          {/* Logo - White on dark background */}
+          <Link to="/" className="flex items-center">
+            <img 
+              src="/iz-logo.png" 
+              alt="InternZone Logo" 
+              className="h-10 w-auto hover:opacity-90 transition-opacity"
+            />
+          </Link>
 
-                {/* CTA Button */}
-                <div className="mb-8">
-                    
-                        <button 
-                        onClick={() => handleInternalLink('services')}
-                        className="px-8 py-3 bg-gradient-to-r from-cyan-400 to-blue-500 text-black font-bold rounded-full cursor-pointer hover:from-cyan-500 hover:to-blue-600 transition-all duration-300 shadow-lg hover:shadow-cyan-500/30">
-                            Explore Now!
-                        </button>
-                    
-                </div>
+          {/* Desktop Navigation Links */}
+          <div className="hidden md:flex items-center space-x-6">
+            <button 
+              onClick={() => handleInternalLink('home')}
+              className="text-gray-300 hover:text-cyan-400 px-3 py-2 rounded-md text-sm font-medium transition-colors"
+            >
+              Home
+            </button>
+            
+            <button
+              onClick={() => handleInternalLink('about')}
+              className="text-gray-300 hover:text-cyan-400 px-3 py-2 rounded-md text-sm font-medium transition-colors"
+            >
+              About Us
+            </button>
+            
+            <button
+              onClick={() => handleInternalLink('services')}
+              className="text-gray-300 hover:text-cyan-400 px-3 py-2 rounded-md text-sm font-medium transition-colors"
+            >
+              Internships
+            </button>
+            
+            <button
+              onClick={() => handleInternalLink('contact')}
+              className="text-gray-300 hover:text-cyan-400 px-3 py-2 rounded-md text-sm font-medium transition-colors"
+            >
+              Contact
+            </button>
+          
+            {/* Auth Buttons */}
+            <SignedIn>
+              <UserButton 
+                appearance={{
+                  elements: {
+                    userButtonAvatarBox: "h-8 w-8 ring-2 ring-cyan-400",
+                    userButtonPopoverCard: "bg-gray-800 border border-gray-700 shadow-xl"
+                  }
+                }}
+              />
+            </SignedIn>
+            <SignedOut>
+              <SignInButton mode="modal">
+                <button className="bg-cyan-400 hover:bg-cyan-500 text-gray-900 px-4 py-2 rounded-md text-sm font-medium transition-colors shadow hover:shadow-md">
+                  Sign In
+                </button>
+              </SignInButton>
+            </SignedOut>
+          </div>
 
-                {/* Navigation Links */}
-                <div className="flex justify-center flex-wrap gap-4 mb-8">
-                    <button onClick={() => handleInternalLink('home')} className="text-gray-400 hover:text-cyan-400 transition-colors px-3 py-1">Home</button>
-                    <button onClick={() => handleInternalLink('about')} className="text-gray-400 hover:text-cyan-400 transition-colors px-3 py-1">About Us</button>
-                    <button onClick={() => handleInternalLink('services')} className="text-gray-400 hover:text-cyan-400 transition-colors px-3 py-1">Internship</button>
-                    <button onClick={() => handleInternalLink('contact')} className="text-gray-400 hover:text-cyan-400 transition-colors px-3 py-1">Contact</button>
-                </div>
+          {/* Mobile menu button */}
+          <div className="md:hidden flex items-center">
+            <button 
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="text-gray-300 hover:text-cyan-400 p-2 rounded-md focus:outline-none"
+              aria-label="Toggle menu"
+            >
+              {isMobileMenuOpen ? (
+                <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              ) : (
+                <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              )}
+            </button>
+          </div>
+        </div>
+      </div>
 
-                {/* Social Media Icons */}
-                <div className="flex justify-center gap-6 mb-8">
-                    <a href="#" className="text-gray-400 hover:text-cyan-400 transition-colors text-xl">
-                        <FaLinkedin />
-                    </a>
-                    <a href="#" className="text-gray-400 hover:text-cyan-400 transition-colors text-xl">
-                        <FaInstagram />
-                    </a>
-                    <a href="#" className="text-gray-400 hover:text-cyan-400 transition-colors text-xl">
-                        <FaTwitter />
-                    </a>
-                    <a href="#" className="text-gray-400 hover:text-cyan-400 transition-colors text-xl">
-                        <FaGithub />
-                    </a>
-                </div>
+      {/* Mobile Menu */}
+      {isMobileMenuOpen && (
+        <div className="md:hidden bg-gray-900 border-t border-gray-800">
+          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+            <Link 
+              to="/" 
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="text-gray-300 hover:bg-gray-800 hover:text-cyan-400 block px-3 py-2 rounded-md text-base font-medium"
+            >
+              Home
+            </Link>
+            
+            <button
+              onClick={() => handleInternalLink('about')}
+              className="text-gray-300 hover:bg-gray-800 hover:text-cyan-400 block px-3 py-2 rounded-md text-base font-medium w-full text-left"
+            >
+              About Us
+            </button>
+            
+            <button
+              onClick={() => handleInternalLink('services')}
+              className="text-gray-300 hover:bg-gray-800 hover:text-cyan-400 block px-3 py-2 rounded-md text-base font-medium w-full text-left"
+            >
+              Internships
+            </button>
+            
+            <button
+              onClick={() => handleInternalLink('contact')}
+              className="text-gray-300 hover:bg-gray-800 hover:text-cyan-400 block px-3 py-2 rounded-md text-base font-medium w-full text-left"
+            >
+              Contact
+            </button>
 
-                {/* NCS ID and Copyright */}
-                <div className="text-xs text-gray-500 mt-6 space-y-1">
-                    <p>NCS ID: E20G64-1725190218451</p>
-                    <p>© 2025 InternZone. All Rights Reserved.</p>
+            <div className="pt-2 pb-3">
+              <SignedIn>
+                <div className="px-3 py-2">
+                  <UserButton 
+                    appearance={{
+                      elements: {
+                        userButtonAvatarBox: "h-8 w-8 ring-2 ring-cyan-400",
+                        userButtonPopoverCard: "bg-gray-800 border border-gray-700 shadow-xl"
+                      }
+                    }}
+                  />
                 </div>
+              </SignedIn>
+              <SignedOut>
+                <SignInButton mode="modal">
+                  <button 
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="bg-cyan-400 hover:bg-cyan-500 text-gray-900 w-full px-4 py-2 rounded-md text-base font-medium transition-colors shadow hover:shadow-md"
+                  >
+                    Sign In
+                  </button>
+                </SignInButton>
+              </SignedOut>
             </div>
-        </footer>
-    )
-}
+          </div>
+        </div>
+      )}
+    </nav>
+  );
+};
 
-export default Footer
+export default Navbar;
