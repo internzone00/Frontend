@@ -1,9 +1,26 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { FaLinkedin, FaInstagram, FaTwitter } from 'react-icons/fa'
 import { FaGithub } from 'react-icons/fa'
+import { useNavigate } from 'react-router-dom';
 
 const Footer = () => {
+
+    const navigate = useNavigate();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const handleInternalLink = (section) => {
+    setIsMobileMenuOpen(false); // Close mobile menu when a link is clicked
+    if (window.location.pathname === '/') {
+      const element = document.getElementById(section);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      navigate('/', { state: { scrollTo: section } });
+    }
+  };
+
     return (
         <footer className="bg-gradient-to-t from-black to-gray-900 text-center pt-10 pb-6 mt-16 border-t border-gray-700">
             <div className="max-w-6xl mx-auto px-4">
@@ -15,19 +32,21 @@ const Footer = () => {
 
                 {/* CTA Button */}
                 <div className="mb-8">
-                    <a href="#services">
-                        <button className="px-8 py-3 bg-gradient-to-r from-cyan-400 to-blue-500 text-black font-bold rounded-full cursor-pointer hover:from-cyan-500 hover:to-blue-600 transition-all duration-300 shadow-lg hover:shadow-cyan-500/30">
+                    
+                        <button 
+                        onClick={() => handleInternalLink('services')}
+                        className="px-8 py-3 bg-gradient-to-r from-cyan-400 to-blue-500 text-black font-bold rounded-full cursor-pointer hover:from-cyan-500 hover:to-blue-600 transition-all duration-300 shadow-lg hover:shadow-cyan-500/30">
                             Explore Now!
                         </button>
-                    </a>
+                    
                 </div>
 
                 {/* Navigation Links */}
                 <div className="flex justify-center flex-wrap gap-4 mb-8">
-                    <Link to="/" className="text-gray-400 hover:text-cyan-400 transition-colors px-3 py-1">Home</Link>
-                    <Link to="/about" className="text-gray-400 hover:text-cyan-400 transition-colors px-3 py-1">About Us</Link>
-                    <Link to="/services" className="text-gray-400 hover:text-cyan-400 transition-colors px-3 py-1">Internship</Link>
-                    <Link to="/contact" className="text-gray-400 hover:text-cyan-400 transition-colors px-3 py-1">Contact</Link>
+                    <button onClick={() => handleInternalLink('home')} className="text-gray-400 hover:text-cyan-400 transition-colors px-3 py-1">Home</button>
+                    <button onClick={() => handleInternalLink('about')} className="text-gray-400 hover:text-cyan-400 transition-colors px-3 py-1">About Us</button>
+                    <button onClick={() => handleInternalLink('services')} className="text-gray-400 hover:text-cyan-400 transition-colors px-3 py-1">Internship</button>
+                    <button onClick={() => handleInternalLink('contact')} className="text-gray-400 hover:text-cyan-400 transition-colors px-3 py-1">Contact</button>
                 </div>
 
                 {/* Social Media Icons */}
