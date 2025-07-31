@@ -176,7 +176,7 @@ const Contact = () => {
                 </svg>
                 <h4 className="text-lg font-semibold text-cyan-400">24/7 Student Helpline</h4>
             </div>
-            <p className="text-gray-300 text-justify pl-8">+91 8483095701</p>
+            <p className="text-gray-300 text-justify pl-8">+91 7498484636</p>
         </div>
 
         {/* Payment Query Section */}
