@@ -165,7 +165,7 @@ const Contact = () => {
                 </svg>
                 <h4 className="text-lg font-semibold text-cyan-400">Email Support</h4>
             </div>
-            <p className="text-gray-300 text-justify pl-8">support@internzone.in</p>
+            <p className="text-gray-300 text-justify pl-8">internzone01@gmail.com</p>
         </div>
 
         {/* Helpline Section */}
