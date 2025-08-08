@@ -4,6 +4,7 @@ import Hero from "../components/Hero";
 import About from "../components/About";
 import Service from "../components/Service";
 import Contact from "../components/Contact";
+import Policy from "../components/Policy";
 import { useLocation } from "react-router-dom"; // new
 import axios from "axios";
 
@@ -347,6 +348,10 @@ export default function Home() {
 
             {/* CONTACT SECTION */}
             <Contact />
+
+            {/*POLICY SECTION*/}
+            <Policy />
     </>
   );
 }
+
