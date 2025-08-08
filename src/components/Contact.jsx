@@ -127,76 +127,70 @@ const Contact = () => {
 
                 <div className="text-center">
                     <h3 className="text-3xl font-bold text-cyan-400 mb-8">Connect With Us</h3>
-                    {/* <div className="flex justify-center gap-8 mb-12">
-                        <a href="#" className="group">
-                            <div className="h-20 w-20 rounded-full bg-gradient-to-br from-cyan-900/30 to-gray-900 border border-gray-800 flex justify-center items-center group-hover:border-cyan-400 transition-all duration-300">
-                                <FontAwesomeIcon 
-                                    icon={faInstagram} 
-                                    className="text-4xl text-cyan-400 group-hover:text-white transition-all duration-300" 
-                                />
-                            </div>
-                        </a>
-                        <a href="#" className="group">
-                            <div className="h-20 w-20 rounded-full bg-gradient-to-br from-cyan-900/30 to-gray-900 border border-gray-800 flex justify-center items-center group-hover:border-cyan-400 transition-all duration-300">
-                                <FontAwesomeIcon 
-                                    icon={faLinkedin} 
-                                    className="text-4xl text-cyan-400 group-hover:text-white transition-all duration-300" 
-                                />
-                            </div>
-                        </a>
-                        <a href="#" className="group">
-                            <div className="h-20 w-20 rounded-full bg-gradient-to-br from-cyan-900/30 to-gray-900 border border-gray-800 flex justify-center items-center group-hover:border-cyan-400 transition-all duration-300">
-                                <FontAwesomeIcon 
-                                    icon={faEnvelopeRegular} 
-                                    className="text-4xl text-cyan-400 group-hover:text-white transition-all duration-300" 
-                                />
-                            </div>
-                        </a>
-                    </div> */}
+                    
                     
                     {/* Replaced Contact Information Box */}
-                    <div className="bg-gray-900 rounded-xl p-8 border border-gray-800 shadow-lg">
-    <div className="space-y-8">
-        {/* Email Section */}
-        <div className="space-y-2">
-            <div className="flex items-center ">
-                <svg className="w-5 h-5 text-cyan-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-                <h4 className="text-lg font-semibold text-cyan-400">Email Support</h4>
+      <div className="bg-gray-900 rounded-xl p-8 border border-gray-800 shadow-lg max-w-2xl mx-auto">
+    {/* Header */}
+    
+
+        {/* Support Channels */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {/* Email Support */}
+            <div className="bg-gray-800/50 p-4 rounded-lg flex space-x-3">
+                <div className="bg-cyan-400/10 p-2 rounded-full h-fit">
+                    <svg className="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                </div>
+                <div>
+                    <h4 className="font-medium text-gray-300 mb-1">Email Support</h4>
+                    <a href="mailto:internzone01@gmail.com" className="text-cyan-400 hover:text-cyan-300 text-sm">internzone01@gmail.com</a>
+                </div>
             </div>
-            <p className="text-gray-300 text-justify pl-8">internzone01@gmail.com</p>
+
+            {/* 24/7 Helpline */}
+            <div className="bg-gray-800/50 p-4 rounded-lg flex space-x-3">
+                <div className="bg-cyan-400/10 p-2 rounded-full h-fit">
+                    <svg className="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                    </svg>
+                </div>
+                <div>
+                    <h4 className="font-medium text-gray-300 mb-1">24/7 Helpline</h4>
+                    <div className="flex flex-col space-y-1">
+                        <a href="tel:+917498484636" className="text-cyan-400 hover:text-cyan-300 text-sm">+91 7498484636</a>
+                        <a href="tel:+918483095701" className="text-cyan-400 hover:text-cyan-300 text-sm">+91 8483095701</a>
+                        <span className="text-gray-400 text-xs mt-1">Available round the clock</span>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        {/* Helpline Section */}
-        <div className="space-y-2">
-            <div className="flex items-center">
-                <svg className="w-5 h-5 text-cyan-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                </svg>
-                <h4 className="text-lg font-semibold text-cyan-400">24/7 Student Helpline</h4>
+        {/* Payment Support */}
+        <div className="bg-gray-800/50 mt-4 p-4 rounded-lg">
+            <div className="flex space-x-3 mb-3">
+                <div className="bg-cyan-400/10 p-2 rounded-full">
+                    <svg className="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
+                    </svg>
+                </div>
+                <div>
+                    <h4 className="font-medium text-gray-300">Payment Support</h4>
+                    <p className="text-gray-400 text-sm">Transaction and billing assistance</p>
+                </div>
             </div>
-            <p className="text-gray-300 text-justify pl-8">+91 7498484636</p>
-        </div>
-
-        {/* Payment Query Section */}
-        <div className="space-y-2">
-            <div className="flex items-center">
-                <svg className="w-5 h-5 text-cyan-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
-                </svg>
-                <h4 className="text-lg font-semibold  text-cyan-400">Payment Support</h4>
-            </div>
-            <div className="space-y-2 pl-8">
-                <p className="text-gray-300 text-justify">
-                    Payment processing typically completes within 30 minutes. If your transaction remains pending beyond this period:
+            
+            <div className="ml-11 space-y-2">
+                <p className="text-gray-300 text-sm">
+                    Payments typically process within 30 minutes. For pending transactions:
                 </p>
-                <div className="flex items-start mt-8">
-                    <svg className="w-4 h-4 text-cyan-400 mt-1 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="flex items-start bg-gray-700/50 p-3 rounded-lg">
+                    <svg className="w-4 h-4 text-amber-400 mt-0.5 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                     </svg>
                     <p className="text-gray-300 text-sm">
-                        Please contact our WhatsApp support for immediate assistance with payment-related queries.
+                        Contact our 24/7 helpline for immediate payment assistance
                     </p>
                 </div>
             </div>
@@ -204,9 +198,10 @@ const Contact = () => {
     </div>
 </div>
                 </div>
-            </div>
+            
         </section>
     )
 }
 
 export default Contact
+
