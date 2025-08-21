@@ -4,12 +4,16 @@ import axios from "axios";
 
 const Preview = ({ formData, onBack, serviceDuration }) => {
     const [data, setData] = useState();
-    const [loading, setLoading] = useState(false); // 🔹 loading state
+    const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
+
+    console.log(serviceDuration);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setLoading(true); // show loading screen
+        console.log('Payment status', formData);
+        setIsLoading(true); // Start loading
+
         try {
             const response = await axios.post('https://internzone-backend.onrender.com/initiate-payment', {
                 ...formData,
@@ -20,7 +24,7 @@ const Preview = ({ formData, onBack, serviceDuration }) => {
             setData(response.data);
         } catch (error) {
             console.error("Payment error:", error);
-            setLoading(false); // stop loader on error
+            setIsLoading(false); // Stop loading on error
         }
     };
 
@@ -30,30 +34,33 @@ const Preview = ({ formData, onBack, serviceDuration }) => {
             formWrapper.innerHTML = data;
             const formElement = formWrapper.querySelector('form');
             if (formElement) {
-                formElement.submit(); // redirect to gateway
+                formElement.submit();
             }
+            // We don't set isLoading to false here as the page will redirect
+        } else if (data) {
+            setIsLoading(false); // Stop loading if data isn't a string (unexpected response)
         }
-        window.scrollTo(0, 0);
+        window.scrollTo(0,0);
     }, [data]);
 
     return (
         <>
-            {/* Hidden form injection */}
+            {/* Loading Overlay */}
+            {isLoading && (
+                <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
+                    <div className="bg-gray-800 p-8 rounded-xl border border-cyan-600 flex flex-col items-center">
+                        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-cyan-500 mb-4"></div>
+                        <p className="text-white text-lg font-medium">Processing Payment...</p>
+                        <p className="text-gray-400 mt-2">Please wait while we connect to the payment gateway</p>
+                    </div>
+                </div>
+            )}
+
             <div
                 className="hidden"
                 id="paymentData"
                 dangerouslySetInnerHTML={{ __html: data }}
             />
-
-            {/* 🔹 Loading Overlay */}
-            {loading && (
-                <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
-                    <div className="text-center">
-                        <div className="w-16 h-16 border-4 border-cyan-400 border-t-transparent rounded-full animate-spin mx-auto"></div>
-                        <p className="mt-4 text-white font-medium">Redirecting to Payment...</p>
-                    </div>
-                </div>
-            )}
 
             <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 py-12 px-4 sm:px-6 lg:px-8">
                 <div className="max-w-md mx-auto bg-gray-800 rounded-xl shadow-2xl overflow-hidden border border-gray-700">
@@ -83,7 +90,8 @@ const Preview = ({ formData, onBack, serviceDuration }) => {
                                 <button
                                     type="button"
                                     onClick={onBack}
-                                    className="px-6 py-3 bg-gray-700 text-gray-200 rounded-lg hover:bg-gray-600 transition-colors font-medium flex items-center border border-gray-600"
+                                    disabled={isLoading}
+                                    className="px-6 py-3 bg-gray-700 text-gray-200 rounded-lg hover:bg-gray-600 transition-colors font-medium flex items-center border border-gray-600 disabled:opacity-50 disabled:cursor-not-allowed"
                                 >
                                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
                                         <path fillRule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clipRule="evenodd" />
@@ -92,12 +100,15 @@ const Preview = ({ formData, onBack, serviceDuration }) => {
                                 </button>
                                 <button
                                     type="submit"
-                                    className="px-6 py-3 bg-cyan-700 hover:bg-cyan-600 text-white rounded-lg font-medium flex items-center shadow-lg hover:shadow-cyan-500/30 transition-all border border-cyan-600"
+                                    disabled={isLoading}
+                                    className="px-6 py-3 bg-cyan-700 hover:bg-cyan-600 text-white rounded-lg font-medium flex items-center shadow-lg hover:shadow-cyan-500/30 transition-all border border-cyan-600 disabled:opacity-50 disabled:cursor-not-allowed"
                                 >
-                                    Confirm Payment
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
-                                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                                    </svg>
+                                    {isLoading ? 'Processing...' : 'Confirm Payment'}
+                                    {!isLoading && (
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                                        </svg>
+                                    )}
                                 </button>
                             </div>
                         </form>
