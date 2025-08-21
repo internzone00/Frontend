@@ -4,14 +4,12 @@ import axios from "axios";
 
 const Preview = ({ formData, onBack, serviceDuration }) => {
     const [data, setData] = useState();
+    const [loading, setLoading] = useState(false); // 🔹 loading state
     const navigate = useNavigate();
-
-    console.log(serviceDuration);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('Payment status', formData);
-
+        setLoading(true); // show loading screen
         try {
             const response = await axios.post('https://internzone-backend.onrender.com/initiate-payment', {
                 ...formData,
@@ -22,6 +20,7 @@ const Preview = ({ formData, onBack, serviceDuration }) => {
             setData(response.data);
         } catch (error) {
             console.error("Payment error:", error);
+            setLoading(false); // stop loader on error
         }
     };
 
@@ -31,19 +30,30 @@ const Preview = ({ formData, onBack, serviceDuration }) => {
             formWrapper.innerHTML = data;
             const formElement = formWrapper.querySelector('form');
             if (formElement) {
-                formElement.submit();
+                formElement.submit(); // redirect to gateway
             }
         }
-        window.scrollTo(0,0);
+        window.scrollTo(0, 0);
     }, [data]);
 
     return (
         <>
+            {/* Hidden form injection */}
             <div
                 className="hidden"
                 id="paymentData"
                 dangerouslySetInnerHTML={{ __html: data }}
             />
+
+            {/* 🔹 Loading Overlay */}
+            {loading && (
+                <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
+                    <div className="text-center">
+                        <div className="w-16 h-16 border-4 border-cyan-400 border-t-transparent rounded-full animate-spin mx-auto"></div>
+                        <p className="mt-4 text-white font-medium">Redirecting to Payment...</p>
+                    </div>
+                </div>
+            )}
 
             <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 py-12 px-4 sm:px-6 lg:px-8">
                 <div className="max-w-md mx-auto bg-gray-800 rounded-xl shadow-2xl overflow-hidden border border-gray-700">
