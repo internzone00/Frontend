@@ -16,7 +16,7 @@ const Policy = () => {
                     <div className="absolute -inset-1 bg-white blur opacity-5 rounded-lg"></div>
                     <h3 className="text-2xl md:text-3xl font-bold text-cyan-400 mb-6 relative">Privacy Policy</h3>
                     <div className="space-y-4 text-gray-300 relative">
-                        <p>InternZone ("we", "our", "us") respects your privacy and is committed to protecting your personal information.</p>
+                        <p>InternZone respects your privacy and is committed to protecting your personal information.</p>
                         <p>We collect information such as name, contact details, and payment information solely to process orders, provide services, and improve our platform.</p>
                         <p>We do not sell, rent, or share your personal data with third parties except as required by law or to complete payment processing via our secure payment partner (PayU).</p>
                         <p>Payment details are processed securely and are never stored on our servers.</p>
@@ -59,26 +59,11 @@ const Policy = () => {
                     </div>
                 </div>
 
-                {/* Contact Information */}
-                <div className="bg-gray-800 shadow-2xl rounded-lg p-8 border-l-4 border-cyan-400 relative overflow-hidden">
-                    <div className="absolute -inset-1 bg-white blur opacity-5 rounded-lg"></div>
-                    <h3 className="text-2xl md:text-3xl font-bold text-cyan-400 mb-6 relative">Contact Information</h3>
-                    <div className="space-y-4 text-gray-300 relative">
-                        <p><span className="font-semibold text-cyan-400">Legal Name:</span> Sanskruti Rajesh Parate</p>
-                        <p><span className="font-semibold text-cyan-400">Address:</span><br />
-                            ward No 4<br />
-                            Nearby Amba Mandir<br />
-                            Mahalaxmi Nagar,<br />
-                            Saoner, Nagpur,<br />
-                            Maharashtra<br />
-                            441107</p>
-                        <p><span className="font-semibold text-cyan-400">Phone:</span> 8483095701</p>
-                        <p><span className="font-semibold text-cyan-400">Email:</span> internzone01@gmail.com</p>
-                    </div>
-                </div>
+                
             </div>
         </section>
     )
 }
+
 
 export default Policy
