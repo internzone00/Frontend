@@ -4,19 +4,19 @@ import { useNavigate } from 'react-router-dom';
 const Hero = () => {
     const navigate = useNavigate();
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    const [imageLoaded, setImageLoaded] = useState(false);
+    
 
     const handleInternalLink = (section) => {
-        setIsMobileMenuOpen(false);
-        if (window.location.pathname === '/') {
-            const element = document.getElementById(section);
-            if (element) {
-                element.scrollIntoView({ behavior: 'smooth' });
-            }
-        } else {
-            navigate('/', { state: { scrollTo: section } });
-        }
-    };
+    setIsMobileMenuOpen(false); // Close mobile menu when a link is clicked
+    if (window.location.pathname === '/') {
+      const element = document.getElementById(section);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      navigate('/', { state: { scrollTo: section } });
+    }
+  };
 
     return (
         <section className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 px-6 py-12 md:py-20 items-center">
@@ -28,35 +28,18 @@ const Hero = () => {
                     InternZone is a student-focused platform providing real-world experience through internships and projects. Begin your journey to success today!
                 </p>
                 <div className="pt-2">
-                    <button
+                        <button
                         onClick={() => handleInternalLink('services')}
                         className="px-8 py-3 text-lg font-semibold rounded-full bg-cyan-400 text-white hover:bg-cyan-600 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-cyan-500/30">
-                        Explore Now →
-                    </button>
+                            Explore Now →
+                        </button>
                 </div>
             </div>
-            <div className="flex justify-center md:justify-end relative">
-                {/* Blurred placeholder */}
-                {!imageLoaded && (
-                    <div 
-                        className="rounded-lg shadow-xl w-full h-64 bg-gray-300 animate-pulse"
-                        style={{ 
-                            backgroundImage: "url('/internzone-hero-tiny.webp')", 
-                            backgroundSize: "cover",
-                            filter: "blur(10px)"
-                        }}
-                    />
-                )}
-                
-                {/* Optimized image */}
+            <div className="flex justify-center md:justify-end">
                 <img 
-                    src="/internzone-hero-sm.webp"
-                    srcSet="/internzone-hero-sm.webp 640w, /internzone-hero-md.webp 768w, /internzone-hero-lg.webp 1024w"
-                    sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
+                    src="/internzone-hero.webp" 
                     alt="Students collaborating" 
-                    loading="lazy"
-                    onLoad={() => setImageLoaded(true)}
-                    className={`rounded-lg shadow-xl max-w-full h-auto object-cover transition-all duration-500 hover:scale-105 ${imageLoaded ? 'opacity-100' : 'opacity-0 absolute'}`}
+                    className="rounded-lg shadow-xl max-w-full h-auto object-cover transition-all duration-500 hover:scale-105" 
                 />
             </div>
         </section>
