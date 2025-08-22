@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { FaLinkedin, FaInstagram, FaTwitter } from 'react-icons/fa'
+import { FaLinkedin, FaInstagram } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom';
 
 const Footer = () => {
@@ -56,9 +56,7 @@ const Footer = () => {
                     <a href="#" className="text-gray-400 hover:text-cyan-400 transition-colors text-xl">
                         <FaInstagram />
                     </a>
-                    <a href="#" className="text-gray-400 hover:text-cyan-400 transition-colors text-xl">
-                        <FaTwitter />
-                    </a>
+                    
                 </div>
 
                 {/* NCS ID and Copyright */}
@@ -72,4 +70,5 @@ const Footer = () => {
 }
 
 export default Footer
+
 
